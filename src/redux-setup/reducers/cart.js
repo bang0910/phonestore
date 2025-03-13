@@ -10,7 +10,7 @@ const cartReducer = createSlice({
       let isProductExists = false;
       state.items.map((item) => {
         if (item._id === action.payload._id) {
-          item.qty += action.payload.qty;
+          item.qty += Number(action.payload.qty);
           isProductExists = true;
         }
         return item;

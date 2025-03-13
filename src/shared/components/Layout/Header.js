@@ -7,7 +7,7 @@ import { logoutSuccess } from "../../../redux-setup/reducers/auth";
 const Header = () => {
   const [keyword, setKeyword] = useState("");
   const login = useSelector(({ auth }) => auth.login);
-  const customerId = login.currentCustomer?._id;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const changeKeyword = (e) => setKeyword(e.target.value);
@@ -17,6 +17,7 @@ const Header = () => {
   const clickSearch = () => {
     return navigate(`/Search?keyword=${keyword}`);
   };
+  const customerId = login?.currentCustomer?._id;
   const clickLogout = (e) => {
     e.preventDefault();
     dispatch(logoutSuccess());
@@ -35,7 +36,7 @@ const Header = () => {
             <div id="logo" className="col-lg-3 col-md-12 col-sm-12">
               <h1>
                 <Link to={"/"}>
-                  <img className="img-fluid" src="/images/logo1.png" />
+                  <img className="img-fluid" src="/images/logo.png" />
                 </Link>
               </h1>
             </div>
@@ -91,7 +92,7 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#">
+                    <Link to="/Order">
                       <i className="fas fa-file-alt" /> Đơn hàng đã mua
                     </Link>
                   </li>

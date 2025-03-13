@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { registerCustomer } from "../../services/Api";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formRegister, setFormRegister] = useState({});
   const [alertRegister, setAlertRegister] = useState(false);
   const [statusRegister, setStatusRegister] = useState(false);
+  const navigate = useNavigate();
   const changeFormInputs = (e) => {
     const { name, value } = e.target;
     return setFormRegister({ ...formRegister, [name]: value });
   };
   const clickRegister = (e) => {
     e.preventDefault();
-    console.log("Form gửi đi:", formRegister);
     registerCustomer(formRegister)
       .then(({ data }) => {
-        console.log("Đăng ký thành công:", data); // 👈 log phản hồi server
         setAlertRegister("Đăng kí tài khoản thành công!");
         setStatusRegister(true);
-        return setFormRegister({});
+        return setFormRegister({}), navigate("/Login");
       })
       .catch((error) => {
         console.error("Lỗi đăng ký:", error.response?.data || error.message); // 👈 log lỗi
@@ -108,9 +108,9 @@ const Register = () => {
             </a>
           </div>
           <div className="by-now col-lg-6 col-md-6 col-sm-12">
-            <a href="#">
+            <Link to={"/"}>
               <b>Quay về trang chủ</b>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

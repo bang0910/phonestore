@@ -18,8 +18,18 @@ const authReducer = createSlice({
       state.login.currentCustomer = null;
       state.login.loggedIn = false;
     },
-    updateSuccess: (state, action) => {},
-    updateTokenSuccess: (state, action) => {},
+    updateSuccess: (state, action) => {
+      state.login.currentCustomer = {
+        ...state.login.currentCustomer,
+        fullName:
+          action.payload.data.fullName || state.currentCustomer.fullName,
+        phone: action.payload.data.phone || state.currentCustomer.phone,
+        address: action.payload.data.address || state.currentCustomer.address,
+      };
+    },
+    updateTokenSuccess: (state, action) => {
+      state.login.currentCustomer.accessToken = action.payload.newAccessToken;
+    },
   },
 });
 export const {

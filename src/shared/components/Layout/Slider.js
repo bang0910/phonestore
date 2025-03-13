@@ -20,25 +20,12 @@ const Slider = () => {
       <div id="slide" className="carousel slide" data-ride="carousel">
         {/* Indicators */}
         <ul className="carousel-indicators">
-          {
-            <div>
-              <li data-target="#slide" data-slide-to={0} className="active" />
-              <li data-target="#slide" data-slide-to={1} />
-              <li data-target="#slide" data-slide-to={2} />
-              <li data-target="#slide" data-slide-to={3} />
-              <li data-target="#slide" data-slide-to={4} />
-              <li data-target="#slide" data-slide-to={5} />
-            </div>
-
-            /* {sliders.map((slide, index) => (
-            <li
-              key={index}
-              data-target="#slide"
-              data-slide-to={index}
-              className={index === 0 ? "active" : ""}
-            />
-          ))} */
-          }
+          <li data-target="#slide" data-slide-to={0} className="active" />
+          <li data-target="#slide" data-slide-to={1} />
+          <li data-target="#slide" data-slide-to={2} />
+          <li data-target="#slide" data-slide-to={3} />
+          <li data-target="#slide" data-slide-to={4} />
+          <li data-target="#slide" data-slide-to={5} />
         </ul>
         {/* The slideshow */}
         <div className="carousel-inner">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginCustomer } from "../../services/Api";
+import { loginCustomer, refreshToken } from "../../services/Api";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux-setup/reducers/auth";
@@ -17,10 +17,13 @@ const Login = () => {
     e.preventDefault();
     loginCustomer(inputsLogin)
       .then(({ data }) => {
+        setErrorLogin(false);
+        setInputLogin({});
         dispatch(
           loginSuccess({
             ...data.customer,
-            accesstoken: data.accesstoken,
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
           })
         );
         return navigate("/");
@@ -33,7 +36,6 @@ const Login = () => {
         return console.log(error);
       });
   };
-
   return (
     <>
       {/*	Login Form	*/}
@@ -52,6 +54,7 @@ const Login = () => {
                 name="email"
                 className="form-control"
                 required
+                value={inputsLogin.email || ""}
               />
             </div>
             <div id="customer-pass" className="col-lg-6 col-md-6 col-sm-12">
@@ -62,6 +65,7 @@ const Login = () => {
                 name="password"
                 className="form-control"
                 required
+                value={inputsLogin.password || ""}
               />
             </div>
           </div>

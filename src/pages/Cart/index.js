@@ -5,28 +5,29 @@ import {
   deleteItemCart,
   resetCart,
 } from "../../redux-setup/reducers/cart";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { postOrder } from "../../services/Api";
+import { Link, useNavigate } from "react-router-dom";
+import { order } from "../../services/Api";
 const Cart = () => {
-  const [inputsCustomer, setInputCustomer] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  //cart
   const items = useSelector(({ cart }) => cart.items);
+  //login
+  const login = useSelector(({ auth }) => auth.login);
   const newItems = items.map((item) => ({
     prd_id: item._id,
     price: item.price,
     qty: item.qty,
   }));
-  const changeInputsCustomer = (e) => {
-    const { name, value } = e.target;
-    return setInputCustomer({ ...inputsCustomer, [name]: value });
-  };
   const clickOrder = (e) => {
     e.preventDefault();
-    postOrder({
-      ...inputsCustomer,
-      customer_id: "61471808271a0400ee8f27c9",
+    const { _id, fullName, email, phone, address } = login.currentCustomer;
+    order({
+      fullName,
+      email,
+      phone,
+      address,
+      customer_id: _id,
       items: newItems,
     })
       .then(() => {
@@ -35,7 +36,7 @@ const Cart = () => {
       })
       .catch((error) => console.log(error));
   };
-
+  // update qty
   const changeQty = (e, id) => {
     const value = Number(e.target.value);
     if (value === 0) {
@@ -55,6 +56,7 @@ const Cart = () => {
       })
     );
   };
+  // delete item
   const clickDelete = (e, id) => {
     e.preventDefault();
     const isConfirm = window.confirm("Ban muon xoa san pham khong");
@@ -66,6 +68,9 @@ const Cart = () => {
         )
       : false;
   };
+  const totalPrice = items?.reduce((total, item) => {
+    return (total += item?.qty * item?.price);
+  }, 0);
   return (
     <>
       {/*	Cart	*/}
@@ -97,7 +102,7 @@ const Cart = () => {
                   />
                 </div>
                 <div className="cart-price col-lg-3 col-md-3 col-sm-12">
-                  <b>{formatPrice(item?.qty * item?.price)}đ</b>
+                  <b>{formatPrice(item?.qty * item?.price)}</b>
                   <a onClick={(e) => clickDelete(e, item._id)}>Xóa</a>
                 </div>
               </div>
@@ -110,63 +115,26 @@ const Cart = () => {
               <b>Tổng cộng:</b>
             </div>
             <div className="cart-price col-lg-3 col-md-3 col-sm-12">
-              <b>88.970.000đ</b>
+              <b>{formatPrice(totalPrice)}</b>
             </div>
           </div>
         </form>
       </div>
       {/*	End Cart	*/}
       <div id="customer">
-        <form method="post">
-          <div className="row">
-            <div id="customer-name" className="col-lg-4 col-md-4 col-sm-12">
-              <input
-                onChange={changeInputsCustomer}
-                placeholder="Họ và tên (bắt buộc)"
-                type="text"
-                name="fullName"
-                className="form-control"
-                required
-              />
-            </div>
-            <div id="customer-phone" className="col-lg-4 col-md-4 col-sm-12">
-              <input
-                onChange={changeInputsCustomer}
-                placeholder="Số điện thoại (bắt buộc)"
-                type="text"
-                name="phone"
-                className="form-control"
-                required
-              />
-            </div>
-            <div id="customer-mail" className="col-lg-4 col-md-4 col-sm-12">
-              <input
-                onChange={changeInputsCustomer}
-                placeholder="Email (bắt buộc)"
-                type="text"
-                name="email"
-                className="form-control"
-                required
-              />
-            </div>
-            <div id="customer-add" className="col-lg-12 col-md-12 col-sm-12">
-              <input
-                onChange={changeInputsCustomer}
-                placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)"
-                type="text"
-                name="address"
-                className="form-control"
-                required
-              />
-            </div>
-          </div>
-        </form>
         <div className="row">
           <div className="by-now col-lg-6 col-md-6 col-sm-12">
-            <a onClick={clickOrder} href="#">
-              <b>Mua ngay</b>
-              <span>Giao hàng tận nơi siêu tốc</span>
-            </a>
+            {login.loggedIn ? (
+              <a onClick={clickOrder} href="#">
+                <b>Mua ngay</b>
+                <span>Giao hàng tận nơi siêu tốc</span>
+              </a>
+            ) : (
+              <Link to="/Login">
+                <b>Đăng nhập</b>
+                <span>Đăng nhập để mua hàng</span>
+              </Link>
+            )}
           </div>
           <div className="by-now col-lg-6 col-md-6 col-sm-12">
             <a href="#">

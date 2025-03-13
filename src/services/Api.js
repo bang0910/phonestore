@@ -27,9 +27,27 @@ export const postComment = (id, data) => {
 // export const getSliders = (config) => {
 //   return Http.get("/Slider", config);
 // };
+//login
 export const loginCustomer = (data) => Http.post("/customers/login", data);
-export const postOrder = (data) => Http.post("/order", data);
+//order
+export const order = (data) => Http.post("/order", data);
+//register
 export const registerCustomer = (data) =>
   Http.post("/customers/register", data);
-export const logoutCustomer = (id, config) =>
-  Http.get(`customers/${id}/logout`, config);
+//logout
+export const logoutCustomer = (id) => Http.get(`customers/${id}/logout`);
+// orderList
+export const orderList = (id) => Http.get(`customers/${id}/orders`);
+
+export const orderDetail = (id) => {
+  return Http.get(`/customer/orders/${id}`);
+};
+export const cancelOrder = (id) => {
+  return Http.get(`/customer/orders/${id}/canceled`);
+};
+export const updateCustomer = (id, data) => {
+  return Http.post(`/customers/${id}/update`, data);
+};
+export const refreshToken = () => {
+  return Http.get("/customer/refreshtoken");
+};
