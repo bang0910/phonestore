@@ -8,15 +8,16 @@ const Footer = () => {
               <div id="logo-2" className="col-lg-3 col-md-6 col-sm-12">
                 <h2>
                   <a href="#">
-                    <img src="images/logo-footer.png" />
+                    <img src="images/logo-footer1.png" />
                   </a>
                 </h2>
                 <p>
-                  Vietpro Academy thành lập năm 2009. Chúng tôi đào tạo chuyên
-                  sâu trong 2 lĩnh vực là Lập trình Website &amp; Mobile nhằm
-                  cung cấp cho thị trường CNTT Việt Nam những lập trình viên
-                  thực sự chất lượng, có khả năng làm việc độc lập, cũng như
-                  Team Work ở mọi môi trường đòi hỏi sự chuyên nghiệp cao.
+                  Thành lập từ năm 2010 cho tới nay CellphoneS đã không ngừng mở
+                  rộng phát triển hệ thống khắp cả nước và trở thành một trong
+                  những chuỗi bán lẻ điện thoại di động hàng đầu cả nước.
+                  CellphoneS mong muốn mang lại những trải nghiệm chất lượng
+                  nhất và trở thành người bạn đồng hành tin cậy của Quý khách
+                  hàng.
                 </p>
               </div>
               <div id="address" className="col-lg-3 col-md-6 col-sm-12">
@@ -31,8 +32,8 @@ const Footer = () => {
               </div>
               <div id="hotline" className="col-lg-3 col-md-6 col-sm-12">
                 <h3>Hotline</h3>
-                <p>Phone Sale: (+84) 0988 550 553</p>
-                <p>Email: vietpro.edu.vn@gmail.com</p>
+                <p>Phone Sale: (+84) 0975 546 556</p>
+                <p>Email: Phambang0910nd@gmail.com</p>
               </div>
             </div>
           </div>

@@ -36,7 +36,7 @@ const Header = () => {
             <div id="logo" className="col-lg-3 col-md-12 col-sm-12">
               <h1>
                 <Link to={"/"}>
-                  <img className="img-fluid" src="/images/logo.png" />
+                  <img className="img-fluid" src="/images/logo1.png" />
                 </Link>
               </h1>
             </div>
@@ -62,7 +62,7 @@ const Header = () => {
               <i className="fa-solid fa-user mr-1" />
               {login?.loggedIn ? (
                 <>
-                  <Link className="mr-2 one" to="/Login">
+                  <Link className="mr-2 one" to="/Customer">
                     {login.currentCustomer.fullName}
                   </Link>
                   |

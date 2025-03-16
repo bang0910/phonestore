@@ -9,4 +9,18 @@
 #pagination ul li.active a{
 	background:#EB1F27;
 	border-color:#dee2e6;
-	color:#FFF;}	
+	color:#FFF;}
+.double-button{
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+.one1{
+	padding: 12px 24px;
+  font-size: 16px;
+  background-color: #eb1f27;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}	

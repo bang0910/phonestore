@@ -37,7 +37,12 @@ export const registerCustomer = (data) =>
 //logout
 export const logoutCustomer = (id) => Http.get(`customers/${id}/logout`);
 // orderList
-export const orderList = (id) => Http.get(`customers/${id}/orders`);
+export const orderList = (id, token) =>
+  Http.get(`customers/${id}/orders`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
 export const orderDetail = (id) => {
   return Http.get(`/customer/orders/${id}`);

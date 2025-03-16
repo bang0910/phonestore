@@ -32,18 +32,20 @@ Http.interceptors.response.use(
   },
   async (error) => {
     const response = error.response;
+    // console.log(response.data);
 
-    if (response.data === "Authorization required") {
+    if (response.data === "Token expired") {
       if (response.config.url.indexOf("/customer/refreshtoken") >= 0) {
         return error;
       }
       const data = (await refreshToken()).data;
       const newAccessToken = data.accessToken;
       store.dispatch(updateTokenSuccess({ newAccessToken }));
-      response.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
+      response.config.headers["token"] = `Bearer ${newAccessToken}`;
       return Http(response.config);
     }
     return Promise.reject(error);
   }
 );
+
 export default Http;

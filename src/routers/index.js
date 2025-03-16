@@ -8,6 +8,8 @@ import Success from "../pages/Success";
 import Cart from "../pages/Cart";
 import NotFound from "../pages/NotFound";
 import Order from "../pages/Order";
+import Customer from "../pages/Customer";
+import OrderDetails from "../pages/OrderDetails";
 import AuthRequired from "../shared/AuthRequired";
 export default [
   {
@@ -45,6 +47,14 @@ export default [
   {
     path: "/Order",
     element: AuthRequired.checkNotLogged(Order),
+  },
+  {
+    path: "/Customer",
+    element: AuthRequired.checkNotLogged(Customer),
+  },
+  {
+    path: "/OrderDetail/:id",
+    element: AuthRequired.checkNotLogged(OrderDetails),
   },
   {
     path: "*",

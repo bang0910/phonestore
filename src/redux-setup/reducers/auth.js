@@ -22,9 +22,9 @@ const authReducer = createSlice({
       state.login.currentCustomer = {
         ...state.login.currentCustomer,
         fullName:
-          action.payload.data.fullName || state.currentCustomer.fullName,
-        phone: action.payload.data.phone || state.currentCustomer.phone,
-        address: action.payload.data.address || state.currentCustomer.address,
+          action.payload.fullName || state.login.currentCustomer.fullName,
+        phone: action.payload.phone || state.login.currentCustomer.phone,
+        address: action.payload.address || state.login.currentCustomer.address,
       };
     },
     updateTokenSuccess: (state, action) => {

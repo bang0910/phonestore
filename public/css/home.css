@@ -96,7 +96,9 @@ body{
 	
 #slide .carousel-inner{
 	border-radius:3px !important;}	
-
+.carousel-inner {
+  min-height: 300px; 
+}
 .products{
 	margin-top:20px;}
 .products h3{
